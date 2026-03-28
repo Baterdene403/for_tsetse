@@ -3,87 +3,251 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mini Web</title>
+  <title>Надтай үерхэх үү? ❤️</title>
   <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #f5f7ff, #eef2ff);
-      color: #1f2937;
-    }
-    .container {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffe4ec, #ffd6e7, #fff0f5);
+      color: #7a1f47;
+      position: relative;
     }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -30px;
+      font-size: 20px;
+      animation: floatUp linear forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) scale(1);
+        opacity: 0.9;
+      }
+      to {
+        transform: translateY(-110vh) scale(1.6);
+        opacity: 0;
+      }
+    }
+
     .card {
-      max-width: 720px;
-      width: 100%;
-      background: white;
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      width: min(92vw, 720px);
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 28px;
+      padding: 40px 28px;
       text-align: center;
+      box-shadow: 0 24px 60px rgba(122, 31, 71, 0.18);
+      position: relative;
+      z-index: 2;
     }
+
+    .emoji {
+      font-size: 72px;
+      line-height: 1;
+      margin-bottom: 14px;
+      animation: bounce 1.8s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
     h1 {
-      font-size: 42px;
-      margin: 0 0 12px;
+      margin: 0;
+      font-size: clamp(30px, 6vw, 54px);
+      color: #c2185b;
     }
+
     p {
-      font-size: 18px;
+      margin: 18px auto 0;
+      font-size: clamp(16px, 2.8vw, 22px);
       line-height: 1.6;
-      margin: 0 0 24px;
-      color: #4b5563;
+      color: #8a3459;
+      max-width: 520px;
     }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
+
+    .buttons-wrap {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      margin-top: 34px;
     }
-    a.button {
-      text-decoration: none;
-      padding: 14px 22px;
+
+    .btn {
+      border: none;
       border-radius: 999px;
+      padding: 16px 28px;
+      font-size: 20px;
       font-weight: 700;
-      transition: transform .2s ease, opacity .2s ease;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.12);
     }
-    a.button:hover {
-      transform: translateY(-2px);
-      opacity: 0.95;
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.03);
     }
-    .primary {
-      background: #111827;
+
+    #yesBtn {
+      background: #e91e63;
       color: white;
+      margin-right: 12px;
     }
-    .secondary {
-      background: #e5e7eb;
-      color: #111827;
+
+    #noBtn {
+      background: white;
+      color: #e91e63;
+      border: 2px solid #f8a8c5;
+      position: absolute;
+      left: calc(50% + 30px);
+      top: 0;
     }
-    .footer {
-      margin-top: 28px;
+
+    #message {
+      margin-top: 24px;
+      min-height: 48px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #c2185b;
+    }
+
+    .hint {
+      margin-top: 10px;
       font-size: 14px;
-      color: #6b7280;
+      color: #b85b82;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #c06a90;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 32px 18px;
+      }
+
+      .buttons-wrap {
+        height: 220px;
+      }
+
+      #yesBtn {
+        margin-right: 0;
+      }
+
+      #noBtn {
+        left: 58%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <h1>Сайн уу 👋</h1>
-      <p>
-        Энэ бол GitHub Pages дээр байршуулахад бэлэн жижигхэн веб сайт.
-        Гарчиг, тайлбар, товчнуудыг хүссэнээрээ солиод шууд ашиглаж болно.
-      </p>
-      <div class="buttons">
-        <a class="button primary" href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a class="button secondary" href="mailto:hello@example.com">Холбогдох</a>
-      </div>
-      <div class="footer">Built with simple HTML + CSS</div>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="card" id="card">
+    <div class="emoji">🥺❤️</div>
+    <h1>Надтай үерхэх үү?</h1>
+    <p>
+      Чамтай өнгөрүүлсэн мөч бүр надад үнэхээр онцгой байдаг.
+      Тийм болохоор нэг зүйлийг зориглоод асууя... 💌
+    </p>
+
+    <div class="buttons-wrap" id="buttonsWrap">
+      <button class="btn" id="yesBtn">Тийм 💖</button>
+      <button class="btn" id="noBtn">Үгүй 🙈</button>
     </div>
+
+    <div id="message"></div>
+    <div class="hint">Жаахан шударгаар дарж үзээрэй 😄</div>
+    <div class="footer">Made with love by Baterdene</div>
   </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const message = document.getElementById('message');
+    const hearts = document.getElementById('hearts');
+    const buttonsWrap = document.getElementById('buttonsWrap');
+
+    const noMessages = [
+      'За дахиад нэг бодоод үз дээ 😳',
+      'Ийм амархан үгүй гэж болохгүй шүү 🥺',
+      'Товч чинь өөрөө зугтаачихлаа 😆',
+      'Тийм гэж дарвал илүү гоё шүү 💘',
+      'Би итгэлтэй байна аа 😌'
+    ];
+
+    let noCount = 0;
+    let yesScale = 1;
+
+    function moveNoButton() {
+      const wrapRect = buttonsWrap.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = wrapRect.width - btnRect.width;
+      const maxY = wrapRect.height - btnRect.height;
+
+      const randomX = Math.max(0, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(0, Math.floor(Math.random() * maxY));
+
+      noBtn.style.left = randomX + 'px';
+      noBtn.style.top = randomY + 'px';
+
+      message.textContent = noMessages[noCount % noMessages.length];
+      noCount++;
+      yesScale += 0.12;
+      yesBtn.style.transform = `scale(${yesScale})`;
+    }
+
+    function createHeartBurst(count = 28) {
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.textContent = Math.random() > 0.5 ? '❤️' : '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+        heart.style.fontSize = (18 + Math.random() * 26) + 'px';
+        hearts.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6500);
+      }
+    }
+
+    noBtn.addEventListener('mouseenter', moveNoButton);
+    noBtn.addEventListener('click', moveNoButton);
+    noBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      moveNoButton();
+    }, { passive: false });
+
+    yesBtn.addEventListener('click', () => {
+      message.innerHTML = 'Yayyy! 💍❤️ <br>Би үнэхээр их баяртай байна!';
+      document.querySelector('.emoji').textContent = '😍💞';
+      document.querySelector('p').textContent = 'Энэ өдрийг хамтдаа хамгийн гоё дурсамж болгоё. ✨';
+      createHeartBurst(60);
+      setInterval(() => createHeartBurst(12), 900);
+      noBtn.style.display = 'none';
+      yesBtn.textContent = 'Хайртай шүү 💕';
+    });
+
+    createHeartBurst(16);
+  </script>
 </body>
 </html>
