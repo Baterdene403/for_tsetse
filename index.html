@@ -239,12 +239,14 @@
 
     <div id="message"></div>
     <div class="submessage" id="submessage"></div>
-    <div class="music-note">🎵 Yes дармагц romantic music тоглоно</div>
     <div class="footer">Made with love by Baterdene</div>
   </div>
 
   <audio id="bgMusic" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <iframe width="0" height="0"
+    src="https://www.youtube.com/embed/6zN4_7hq77g?autoplay=1&loop=1"
+    allow="autoplay">
+    </iframe>
   </audio>
 
   <script>
@@ -350,10 +352,10 @@
       if (celebrationStarted) return;
       celebrationStarted = true;
 
-      message.innerHTML = 'Yayyy! 💍❤️';
-      submessage.textContent = 'Би үнэхээр их баяртай байна! Хамтдаа хамгийн гоё дурсамжаа бүтээе ✨';
+      message.innerHTML = '';
+      submessage.textContent = '';
       document.querySelector('.emoji').textContent = '😍💞';
-      mainText.textContent = 'Энэ өдрийг хамтдаа хамгийн гоё дурсамж болгоё. Чи миний хамгийн гоё хариулт байлаа. 💖';
+      mainText.textContent = '';
 
       noBtn.style.display = 'none';
       yesBtn.textContent = 'Хайртай шүү 💕';
