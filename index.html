@@ -1,391 +1,291 @@
 <!doctype html>
 <html lang="mn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Надтай үерхэх үү? ❤️</title>
-  <style>
-    * { box-sizing: border-box; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Надтай үерхэх үү? ❤️</title>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ffe4ec, #ffd6e7, #fff0f5);
-      color: #7a1f47;
-      position: relative;
-    }
+<style>
 
-    .hearts,
-    .confetti,
-    .fireworks {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
+*{box-sizing:border-box}
 
-    .heart {
-      position: absolute;
-      bottom: -30px;
-      font-size: 20px;
-      animation: floatUp linear forwards;
-      opacity: 0.85;
-    }
+body{
+margin:0;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+font-family:Arial;
+background:linear-gradient(135deg,#ffe4ec,#ffd6e7,#fff0f5);
+color:#7a1f47;
+}
 
-    @keyframes floatUp {
-      from {
-        transform: translateY(0) scale(1);
-        opacity: 0.9;
-      }
-      to {
-        transform: translateY(-110vh) scale(1.6);
-        opacity: 0;
-      }
-    }
+.hearts,.confetti,.fireworks{
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+}
 
-    .card {
-      width: min(92vw, 760px);
-      background: rgba(255, 255, 255, 0.93);
-      border-radius: 28px;
-      padding: 42px 28px;
-      text-align: center;
-      box-shadow: 0 24px 60px rgba(122, 31, 71, 0.18);
-      position: relative;
-      z-index: 3;
-      backdrop-filter: blur(8px);
-    }
+.heart{
+position:absolute;
+bottom:-30px;
+font-size:20px;
+animation:floatUp linear forwards;
+}
 
-    .emoji {
-      font-size: 72px;
-      line-height: 1;
-      margin-bottom: 14px;
-      animation: bounce 1.8s infinite;
-    }
+@keyframes floatUp{
+from{transform:translateY(0)}
+to{transform:translateY(-110vh);opacity:0}
+}
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+.card{
+width:min(92vw,720px);
+background:white;
+border-radius:25px;
+padding:40px;
+text-align:center;
+box-shadow:0 24px 60px rgba(0,0,0,0.18);
+}
 
-    h1 {
-      margin: 0;
-      font-size: clamp(30px, 6vw, 54px);
-      color: #c2185b;
-    }
+.emoji{
+font-size:70px;
+margin-bottom:10px;
+}
 
-    p {
-      margin: 18px auto 0;
-      font-size: clamp(16px, 2.8vw, 22px);
-      line-height: 1.6;
-      color: #8a3459;
-      max-width: 560px;
-    }
+h1{
+color:#e91e63;
+}
 
-    .buttons-wrap {
-      position: relative;
-      width: 100%;
-      height: 180px;
-      margin-top: 34px;
-    }
+.buttons-wrap{
+margin-top:30px;
+position:relative;
+height:150px;
+}
 
-    .btn {
-      border: none;
-      border-radius: 999px;
-      padding: 16px 28px;
-      font-size: 20px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.12);
-    }
+.btn{
+border:none;
+padding:16px 28px;
+font-size:20px;
+border-radius:999px;
+cursor:pointer;
+font-weight:700;
+}
 
-    .btn:hover {
-      transform: translateY(-2px) scale(1.03);
-    }
+#yesBtn{
+background:#e91e63;
+color:white;
+}
 
-    #yesBtn {
-      background: #e91e63;
-      color: white;
-      margin-right: 12px;
-    }
+#noBtn{
+background:white;
+border:2px solid pink;
+position:absolute;
+left:55%;
+}
 
-    #noBtn {
-      background: white;
-      color: #e91e63;
-      border: 2px solid #f8a8c5;
-      position: absolute;
-      left: calc(50% + 30px);
-      top: 0;
-    }
+#message{
+margin-top:20px;
+font-size:24px;
+font-weight:bold;
+color:#e91e63;
+}
 
-    #message {
-      margin-top: 24px;
-      min-height: 56px;
-      font-size: 24px;
-      font-weight: 700;
-      color: #c2185b;
-    }
+.footer{
+margin-top:20px;
+font-size:13px;
+color:#c06a90;
+}
 
-    .submessage {
-      margin-top: 8px;
-      font-size: 17px;
-      color: #9c3b67;
-      min-height: 28px;
-    }
+.confetti-piece{
+position:absolute;
+width:10px;
+height:16px;
+animation:confettiFall linear forwards;
+}
 
-    .footer {
-      margin-top: 18px;
-      font-size: 13px;
-      color: #c06a90;
-    }
+@keyframes confettiFall{
+to{
+transform:translateY(110vh) rotate(720deg);
+opacity:0
+}
+}
 
-    .music-note {
-      margin-top: 14px;
-      font-size: 14px;
-      color: #b85b82;
-    }
+.firework{
+position:absolute;
+width:8px;
+height:8px;
+border-radius:50%;
+animation:explode 1.2s forwards;
+}
 
-    .confetti-piece {
-      position: absolute;
-      width: 10px;
-      height: 18px;
-      opacity: 0.9;
-      top: -20px;
-      animation: confettiFall linear forwards;
-      border-radius: 2px;
-    }
+@keyframes explode{
+to{
+transform:translate(var(--x),var(--y));
+opacity:0
+}
+}
 
-    @keyframes confettiFall {
-      to {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    .firework {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      opacity: 1;
-      animation: explode 1.2s ease-out forwards;
-    }
-
-    @keyframes explode {
-      from {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-      to {
-        transform: translate(var(--x), var(--y)) scale(0.2);
-        opacity: 0;
-      }
-    }
-
-    .glow {
-      animation: pulseGlow 1.2s infinite alternate;
-    }
-
-    @keyframes pulseGlow {
-      from { box-shadow: 0 10px 22px rgba(0,0,0,0.12), 0 0 0 rgba(233,30,99,0.0); }
-      to { box-shadow: 0 12px 28px rgba(0,0,0,0.18), 0 0 22px rgba(233,30,99,0.45); }
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        padding: 32px 18px;
-      }
-
-      .buttons-wrap {
-        height: 220px;
-      }
-
-      #yesBtn {
-        margin-right: 0;
-      }
-
-      #noBtn {
-        left: 58%;
-      }
-
-      #message {
-        font-size: 22px;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <div class="hearts" id="hearts"></div>
-  <div class="confetti" id="confetti"></div>
-  <div class="fireworks" id="fireworks"></div>
 
-  <div class="card" id="card">
-    <div class="emoji">🥺❤️</div>
-    <h1>Надтай үерхэх үү?</h1>
-    <p id="mainText">
-      Чамтай өнгөрүүлсэн мөч бүр надад үнэхээр онцгой байдаг.
-      Тийм болохоор миний хувьд онцгой нэгэн минь байгаасай гэж хүсэж байна. 💌
-    </p>
+<div class="hearts" id="hearts"></div>
+<div class="confetti" id="confetti"></div>
+<div class="fireworks" id="fireworks"></div>
 
-    <div class="buttons-wrap" id="buttonsWrap">
-      <button class="btn glow" id="yesBtn">Тийм 💖</button>
-      <button class="btn" id="noBtn">Үгүй 🙈</button>
-    </div>
+<div class="card">
 
-    <div id="message"></div>
-    <div class="submessage" id="submessage"></div>
-    <div class="footer">Made with love by Baterdene</div>
-  </div>
+<div class="emoji">🥺❤️</div>
 
-  <audio id="bgMusic" loop>
-    <iframe width="0" height="0"
-    src="https://www.youtube.com/embed/6zN4_7hq77g?autoplay=1&loop=1"
-    allow="autoplay">
-    </iframe>
-  </audio>
+<h1 id="title">Надтай үерхэх үү?</h1>
 
-  <script>
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const message = document.getElementById('message');
-    const submessage = document.getElementById('submessage');
-    const hearts = document.getElementById('hearts');
-    const confetti = document.getElementById('confetti');
-    const fireworks = document.getElementById('fireworks');
-    const buttonsWrap = document.getElementById('buttonsWrap');
-    const music = document.getElementById('bgMusic');
-    const mainText = document.getElementById('mainText');
+<p id="mainText">
+Чамтай өнгөрүүлсэн мөч бүр надад үнэхээр онцгой байдаг.
+</p>
 
-    let yesScale = 1;
-    let celebrationStarted = false;
-    let fireworkInterval = null;
-    let heartInterval = null;
+<div class="buttons-wrap">
 
-    function moveNoButton() {
-      const wrapRect = buttonsWrap.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
+<button class="btn" id="yesBtn">Тийм 💖</button>
 
-      const maxX = Math.max(0, wrapRect.width - btnRect.width);
-      const maxY = Math.max(0, wrapRect.height - btnRect.height);
+<button class="btn" id="noBtn">Үгүй 🙈</button>
 
-      const randomX = Math.floor(Math.random() * (maxX + 1));
-      const randomY = Math.floor(Math.random() * (maxY + 1));
+</div>
 
-      noBtn.style.left = randomX + 'px';
-      noBtn.style.top = randomY + 'px';
+<div id="message"></div>
 
-      yesScale += 0.12;
-      yesBtn.style.transform = `scale(${yesScale})`;
-    }
+<div class="footer">Made with love by Baterdene</div>
 
-    function createHeartBurst(count = 28) {
-      for (let i = 0; i < count; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.textContent = Math.random() > 0.5 ? '❤️' : '💖';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (3 + Math.random() * 3) + 's';
-        heart.style.fontSize = (18 + Math.random() * 26) + 'px';
-        hearts.appendChild(heart);
-        setTimeout(() => heart.remove(), 6500);
-      }
-    }
+</div>
 
-    function createConfetti(count = 80) {
-      const colors = ['#ff4d6d', '#ff85a1', '#ffd166', '#7bdff2', '#b8f2e6', '#c77dff'];
-      for (let i = 0; i < count; i++) {
-        const piece = document.createElement('div');
-        piece.className = 'confetti-piece';
-        piece.style.left = Math.random() * 100 + 'vw';
-        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animationDuration = (2.5 + Math.random() * 2.5) + 's';
-        piece.style.transform = `translateY(0) rotate(${Math.random() * 360}deg)`;
-        confetti.appendChild(piece);
-        setTimeout(() => piece.remove(), 5200);
-      }
-    }
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/audio/2023/03/27/audio_6c6f3f6e0e.mp3" type="audio/mpeg">
+</audio>
 
-    function createFireworkBurst(x, y) {
-      const colors = ['#ff4d6d', '#ffd166', '#ffffff', '#ff85a1', '#7bdff2', '#c77dff'];
-      const particles = 26;
+<script>
 
-      for (let i = 0; i < particles; i++) {
-        const spark = document.createElement('div');
-        spark.className = 'firework';
-        spark.style.left = x + 'px';
-        spark.style.top = y + 'px';
-        spark.style.background = colors[Math.floor(Math.random() * colors.length)];
+const yesBtn=document.getElementById("yesBtn")
+const noBtn=document.getElementById("noBtn")
+const message=document.getElementById("message")
+const title=document.getElementById("title")
+const hearts=document.getElementById("hearts")
+const confetti=document.getElementById("confetti")
+const fireworks=document.getElementById("fireworks")
+const music=document.getElementById("bgMusic")
 
-        const angle = (Math.PI * 2 * i) / particles;
-        const distance = 50 + Math.random() * 90;
-        const dx = Math.cos(angle) * distance + 'px';
-        const dy = Math.sin(angle) * distance + 'px';
-        spark.style.setProperty('--x', dx);
-        spark.style.setProperty('--y', dy);
+function moveNo(){
 
-        fireworks.appendChild(spark);
-        setTimeout(() => spark.remove(), 1300);
-      }
-    }
+const x=Math.random()*200
+const y=Math.random()*100
 
-    function launchRandomFireworks() {
-      const x = Math.random() * window.innerWidth * 0.9 + window.innerWidth * 0.05;
-      const y = Math.random() * window.innerHeight * 0.45 + 40;
-      createFireworkBurst(x, y);
-    }
+noBtn.style.left=x+"px"
+noBtn.style.top=y+"px"
 
-    async function playMusic() {
-      try {
-        music.volume = 0.45;
-        await music.play();
-      } catch (err) {
-        submessage.textContent = 'Хөгжим autoplay хаалттай байвал Yes-ийг дахиад нэг дарж болно 🎵';
-      }
-    }
+}
 
-    function startCelebration() {
-      if (celebrationStarted) return;
-      celebrationStarted = true;
+noBtn.addEventListener("mouseenter",moveNo)
 
-      message.innerHTML = '';
-      submessage.textContent = '';
-      document.querySelector('.emoji').textContent = '😍💞';
-      mainText.textContent = '';
+function heartBurst(){
 
-      noBtn.style.display = 'none';
-      yesBtn.textContent = 'Хайртай шүү 💕';
-      yesBtn.style.transform = 'scale(1.18)';
+for(let i=0;i<25;i++){
 
-      createHeartBurst(50);
-      createConfetti(120);
-      for (let i = 0; i < 5; i++) {
-        setTimeout(() => launchRandomFireworks(), i * 240);
-      }
+const h=document.createElement("div")
+h.className="heart"
+h.innerHTML=Math.random()>0.5?"❤️":"💖"
 
-      heartInterval = setInterval(() => createHeartBurst(12), 900);
-      fireworkInterval = setInterval(() => {
-        createConfetti(26);
-        launchRandomFireworks();
-      }, 1400);
+h.style.left=Math.random()*100+"vw"
+h.style.animationDuration=3+Math.random()*2+"s"
 
-      playMusic();
-    }
+hearts.appendChild(h)
 
-    noBtn.addEventListener('mouseenter', moveNoButton);
-    noBtn.addEventListener('click', moveNoButton);
-    noBtn.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      moveNoButton();
-    }, { passive: false });
+setTimeout(()=>h.remove(),5000)
 
-    yesBtn.addEventListener('click', startCelebration);
+}
 
-    createHeartBurst(16);
-  </script>
+}
+
+function confettiBurst(){
+
+const colors=["#ff4d6d","#ffd166","#7bdff2","#b8f2e6"]
+
+for(let i=0;i<80;i++){
+
+const c=document.createElement("div")
+c.className="confetti-piece"
+
+c.style.left=Math.random()*100+"vw"
+c.style.background=colors[Math.floor(Math.random()*colors.length)]
+c.style.animationDuration=2+Math.random()*2+"s"
+
+confetti.appendChild(c)
+
+setTimeout(()=>c.remove(),4000)
+
+}
+
+}
+
+function firework(x,y){
+
+for(let i=0;i<25;i++){
+
+const f=document.createElement("div")
+f.className="firework"
+
+f.style.left=x+"px"
+f.style.top=y+"px"
+f.style.background="white"
+
+const angle=(Math.PI*2*i)/25
+const dist=60+Math.random()*50
+
+f.style.setProperty("--x",Math.cos(angle)*dist+"px")
+f.style.setProperty("--y",Math.sin(angle)*dist+"px")
+
+fireworks.appendChild(f)
+
+setTimeout(()=>f.remove(),1200)
+
+}
+
+}
+
+function randomFirework(){
+
+const x=Math.random()*window.innerWidth
+const y=Math.random()*window.innerHeight/2
+
+firework(x,y)
+
+}
+
+yesBtn.onclick=()=>{
+
+title.style.display="none"
+
+message.innerHTML="Yayyy ❤️"
+
+yesBtn.textContent="Хайртай шүү 💕"
+
+noBtn.style.display="none"
+
+music.play()
+
+heartBurst()
+
+confettiBurst()
+
+setInterval(heartBurst,1000)
+
+setInterval(confettiBurst,2000)
+
+setInterval(randomFirework,1500)
+
+}
+
+</script>
+
 </body>
 </html>
