@@ -165,8 +165,7 @@
     <div class="emoji">🥺❤️</div>
     <h1>Надтай үерхэх үү?</h1>
     <p>
-      Чамтай өнгөрүүлсэн мөч бүр надад үнэхээр онцгой байдаг.
-      Тийм болохоор нэг зүйлийг зориглоод асууя... 💌
+      Чамтай өнгөрүүлсэн мөч бүр надад үнэхээр онцгой байдаг. Тийм болохоор миний хувьд онцгой нэгэн минь байгаасай гэж хүсэж байна.
     </p>
 
     <div class="buttons-wrap" id="buttonsWrap">
@@ -175,7 +174,6 @@
     </div>
 
     <div id="message"></div>
-    <div class="hint">Жаахан шударгаар дарж үзээрэй 😄</div>
     <div class="footer">Made with love by Baterdene</div>
   </div>
 
@@ -187,11 +185,7 @@
     const buttonsWrap = document.getElementById('buttonsWrap');
 
     const noMessages = [
-      'За дахиад нэг бодоод үз дээ 😳',
-      'Ийм амархан үгүй гэж болохгүй шүү 🥺',
-      'Товч чинь өөрөө зугтаачихлаа 😆',
-      'Тийм гэж дарвал илүү гоё шүү 💘',
-      'Би итгэлтэй байна аа 😌'
+      'Сонголтгүй ээээ хаха',
     ];
 
     let noCount = 0;
@@ -238,9 +232,9 @@
     }, { passive: false });
 
     yesBtn.addEventListener('click', () => {
-      message.innerHTML = 'Yayyy! 💍❤️ <br>Би үнэхээр их баяртай байна!';
+      message.innerHTML = 'Love my girl';
       document.querySelector('.emoji').textContent = '😍💞';
-      document.querySelector('p').textContent = 'Энэ өдрийг хамтдаа хамгийн гоё дурсамж болгоё. ✨';
+      document.querySelector('p').textContent = 'Баярлалаа';
       createHeartBurst(60);
       setInterval(() => createHeartBurst(12), 900);
       noBtn.style.display = 'none';
